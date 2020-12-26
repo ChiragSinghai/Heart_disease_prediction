@@ -32,20 +32,21 @@ class Algorithms():
         return accuray_dt
 
     def inside_prediction(self,model,L):
-        self.input_data=np.array([L])
-        return model.predict(self.input_data)
+        return model.predict(L)
+
     def prediction(self,L):
-        L_std=self.sc.transform(L)
-        algo=[(self.dt,L),(self.dt1,L),(self.knn,L_std),(self.logreg,L_std)]
+        L_std=self.sc.transform(np.array([L]))
+        A=L[0:5]+L[6:]
+        algo=[(self.dt,np.array([L])),(self.dt1,np.array([A])),
+              (self.knn,L_std),(self.logreg,L_std)]
+        
         s=0
         for i in algo:
-            s+=self.inside_prediction(i[0],i[1])
+            s+=(self.inside_prediction(i[0],i[1]))
         return 1 if s>=2 else 0
     
 if __name__=='__main__':
     L=[63 ,1, 3,145,233,1,0,150,0,2.3,0,0,1]
     obj=Algorithms()
     
-    
-        
-
+    print(obj.prediction(L))
