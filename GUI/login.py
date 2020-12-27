@@ -28,18 +28,17 @@ class login():
         self.frame.place(relx=0.42,rely=0.2,relwidth=0.4,relheight=0.6)
         self.sign_in_frame=Frame(self.frame,bg='#b1d1f7')
         self.sign_in_frame.place(relx=0.3,rely=0.2,relwidth=0.4,relheight=0.15)
-        self.sign_in_button=Button(self.sign_in_frame,text=' Sign-in ',font=("times new roman",16,"bold"))
+        self.sign_in_button=Button(self.sign_in_frame,text=' Sign-in ',command=self.sign_in,font=("times new roman",16,"bold"))
         self.sign_in_button.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.9)
         self.sign_up_frame=Frame(self.frame,bg='#b1d1f7')
         self.sign_up_frame.place(relx=0.3,rely=0.65,relwidth=0.4,relheight=0.15)
         self.sign_up_button=Button(self.sign_up_frame,text=' Sign-up ',font=("times new roman",16,"bold"))
         self.sign_up_button.place(relx=0.05,rely=0.05,relheight=0.9,relwidth=0.9)
-        #self.username_label=Label(self.master,text='Username',bg='black',fg='white')
-        #self.username_label.place(relx=0.42,rely=0.2,relwidth=0.1,relheight=0.05)
         self.sign_in_button.bind('<Enter>',self.animate)
         self.sign_in_button.bind('<Leave>',self.animate)
         self.sign_up_button.bind('<Enter>',self.animate)
         self.sign_up_button.bind('<Leave>',self.animate)
+
     def animate(self,event):
         parent=event.widget
         frameParentName = parent.winfo_parent()
@@ -50,6 +49,12 @@ class login():
         else:
             frameParent.config(bg='#b1d1f7')
             parent.config(bg='white')
+    def del_frame(self):
+        self.frame.destroy()
+    def sign_in(self):
+        self.del_frame()
+        
+
 root=Tk()
 obj=login(root)
 
