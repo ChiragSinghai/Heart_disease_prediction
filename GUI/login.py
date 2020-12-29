@@ -54,6 +54,9 @@ class login():
     def sign_in(self):
         self.del_frame()
         
+    def sign_up(self):
+        pass
+        
 
 root=Tk()
 obj=login(root)
